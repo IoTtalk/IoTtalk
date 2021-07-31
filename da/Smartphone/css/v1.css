@@ -1,0 +1,21 @@
+/*@import url('Wallpoet.txt');*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif, monospace;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #333;
+}
+.white-font {
+  color: white;
+}
+.text-align-center {
+  text-align: center;
+  display: block;
+}

@@ -1,0 +1,147 @@
+/* dfc is device model creation*/
+.label-dfc-title{
+    line-height: 25px;
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 4%;
+}
+
+.label-dfc-subtitle{
+    padding-left: 15%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.label-df-comment{
+    font-weight: bold;
+}
+
+.label-dfc-df-type{
+    margin-left: 3%;
+    width: 30%;
+}
+
+.label-dfc-df-type > input[type=checkbox]{
+    margin-right: 3px;
+}
+
+.label-dfc-range-column-subtitle{
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.input-dfc-name{
+    padding-left: 1%;
+    margin-left: 3%;
+    width: 60%;
+    height: 25px;
+}
+
+.input-dfc-comment{
+    resize: none;
+    width: 90%;
+    height: 80%;
+}
+
+.input-dfc-df-number{
+    padding-left: 1%;
+    margin-left: 3%;
+    width: 5%;
+    height: 25px;
+}
+
+.div-dfc-gap{
+    margin-top: 1%;
+}
+
+.div-df-comment{
+    text-align: left;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.div-dfc-outer{
+    border-style: solid;
+    border-width: 2.5px;
+    border-radius: 8px 8px 8px 8px;
+    height:100%;
+}
+
+.div-dfc-range-column-type{
+    width: 40%;
+    float: left;
+}
+
+.div-dfc-range-setting{
+    width: 68%;
+    margin-left: 15%;
+    height: 50px;
+}
+
+.div-dfc-range-column-unit{
+    width: 20%;
+    float: left;
+}
+
+.div-dfc-range-column-min{
+    width: 20%;
+    float: left;
+}
+
+.div-dfc-range-column-max{
+    width: 20%;
+    float: left;
+}
+
+.div-dfc-range-column-title{
+    width: 100%;
+    height: 25px;
+    border-style: solid;
+    border-width: 1px 0px 1px 1px;
+}
+
+.div-dfc-range-setting-list{
+    width: 100%;
+    height: 25px;
+    float: left;
+}
+
+.dfc-range-setting{
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    border-color:black;
+    border-width:1px;
+}
+
+.input-dfc-save-button{
+    height: 25px;
+    margin-left: 15%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.input-dfc-delete-button{
+    height: 25px;
+    margin-left: 5px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.input-dfc-upload-button{
+    height: 25px;
+    margin-left: 5px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.input-dfc-download-button{
+    height: 25px;
+    margin-left: 15%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}

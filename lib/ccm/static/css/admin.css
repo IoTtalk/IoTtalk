@@ -1,0 +1,28 @@
+.category-select{
+  /*
+  width: 250px;
+  height: 25px;
+  text-align: center;
+  background-color: white;
+  border-style: none;
+  */
+  padding-left:1%;
+  margin-left:3%;
+  height:25px;
+}
+
+#df_creation_outer {
+  background-color: #ffffff;
+  height: auto;
+  margin: 0 auto;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  /*margin-left: 25%;*/
+}
+
+.input-dfc-comment {
+    padding-left: 1%;
+    margin-left: 3%;
+    width: 55%;
+    height: 25px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="no-cache, no-store, must-revalidate">
+    <META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
+
+    <title>{{mac_addr}}</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <link href="{{url_for('static', filename = 'bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">  
+    <link href="{{ url_for('static', filename = 'kurento/style.css') }}" rel="stylesheet"> 
+	
+    <script src="{{ url_for('static', filename = 'kurento/kurento-client.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'kurento/kurento-utils.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'kurento/console.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'kurento/index.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'kurento/field.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'kurento/scripts.js') }}"></script>
+
+    <script>  setVideoInfo('{{field}}');     </script>
+
+    <script src="{{ url_for('static', filename = 'csmapi_modified.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'SwitchSet_id.js') }}"></script>
+     
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap-theme.min.css') }}" >
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap-toggle.min.css') }}">
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap-toggle.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'font.css') }}">
+  </head>
+  <!--   <body onload="flogin();" onunload="bodyOnUnload();" style="background-color: #e9e9e9;">  -->
+   <body>	   
+    <div class="container-fluid">
+      <div class="row">
+        <!-- no remote controll at lab117<div class="col-sm-7">  no remote controll at lab117 -->
+        <div class="col-sm-7">
+          <div class="row">
+            <div class="col-sm-12">
+			<h3 class="text-center text-info">
+				
+			</h3>
+<!--
+	    <form id="login" target="retframe" method="post">
+		 <input type="hidden" name="username" value="login" />
+	         <input type="hidden" name="password" value="pass" />
+            </form>
+	    <script>
+		document.getElementById("login").action = "http://" + ADDR_IP_CAM + ":" + PORT_IP_CAM_API;
+	    </script>
+	    -->
+			</div>
+		  </div>
+
+	      <div class="row">
+	      <div class="col-sm-12">
+              <div id="videoFSContainer" class="img-rounded">
+		    <video id="videoOutput" muted  autoplay class="img-rounded"></video>
+	      </div>
+	      </div>
+	      </div>
+
+	      <div class="row">
+	      <div class="col-sm-12">
+		  <input style="width:350px; display:none;" id="address" type="text">
+		  <a id="start" href="#" class="btn btn-success" style="display:none;">
+		  <span class="glyphicon glyphicon-play" style="display:none;"></span></a>
+		  <a id="stop" href="#" class="btn btn-danger" style="display:none;">
+		  <span class="glyphicon glyphicon-stop" style="display:none;"></span></a>
+	 	  <div id="console" style="display:none;"></div>
+	      </div>
+	      </div>	
+			
+		  <div class="row">
+			<div class="col-sm-12">							 
+			</div>			
+                 </div>
+	        <div class="row">
+
+<div class="col-xs-2">
+<input type="button" class="btn btn-block btn-sm btn-ptz" onclick="CamControl('zoom', 'tele')" style="background-image:url('{{ url_for('static', filename = './kurento/img/zoom-in.png') }}'); background-repeat: no-repeat;">
+<!--		     
+<input type="button" class="btn btn-block btn-success btn-sm btn-ptz" onclick="CamControl('zoom', 'tele'); dan.push('PTZcommand-O', [5, UNAME_IP_CAM]);" style="background-image:url('./kurento/img/zoom-in.png');">
+-->
+</div>
+
+<div class="col-xs-2">
+<input type="button" class="btn btn-block btn-sm btn-ptz" onclick="CamControl('zoom', 'wide')" style="background-image:url('{{ url_for('static', filename = './kurento/img/zoom-out.png') }}'); background-repeat: no-repeat;">
+<!--
+<input type="button" class="btn btn-block btn-success btn-sm btn-ptz" onclick="CamControl('zoom', 'wide'); dan.push('PTZcommand-O', [6, UNAME_IP_CAM]);" style="background-image:url('./kurento/img/zoom-out.png');">
+-->	
+</div>
+
+<!--
+          <div class="col-xs-2">
+  <input type="button" class="btn btn-block btn-primary btn-sm btn-ptz" onclick="dan.push('Up-I', [4, UNAME_IP_CAM])" style="background-image:url('./kurento/img/arrow-up.png');">
+       </div>
+          <div class="col-xs-2">
+     <input type="button" class="btn btn-block btn-primary btn-sm btn-ptz" onclick="dan.push('Down-I',[1, UNAME_IP_CAM])" style="background-image:url('./kurento/img/arrow-down.png');">
+      </div>
+   <div class="col-xs-2">
+   <input type="button" class="btn btn-block btn-warning btn-sm btn-ptz" onclick="dan.push('Left-I', [2, UNAME_IP_CAM])" style="background-image:url('./kurento/img/arrow-left.png');">
+       </div>
+  <div class="col-xs-2">
+   <input type="button" class="btn btn-block btn-warning btn-sm btn-ptz" onclick="dan.push('Right-I', [3, UNAME_IP_CAM])" style="background-image:url('./kurento/img/arrow-right.png');">
+   </div>
+   -->   
+    </div>
+
+
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <h3 class="text-center text-info">
+            </h3>
+
+
+
+    <!-- SwitchSet start -->
+    <legend>
+        <span class="text-success"> {{mac_addr}} </span>
+        <button type="button" class="btn btn-danger close" aria-label="Close" onclick="dereg('{{mac_addr}}')"> <span aria-hidden="true">&times;</span> </button>
+    </legend>
+
+    {% for i in range(count) %}
+    <div class="checkbox">
+        <label>
+            <input  type="checkbox" data-toggle="toggle" id="Switch{{i+1}}">
+            <span class = "Switch{{i+1}} h2"> Switch{{i+1}} </span>
+        </label>
+    </div>
+    {% endfor %}
+
+    <script>
+        set_device_id('{{ mac_addr }}', {{count}}, '{{username}}');
+        check_registerion_state('{{ mac_addr }}');
+    </script>
+    <!-- SwitchSet end -->
+          </div>
+        </div>
+    </div>
+    <iframe id="retframe" name="retframe" frameborder="0" style="display:none;"></iframe>
+    </div>
+  </body>
+</html>

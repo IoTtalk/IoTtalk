@@ -1,0 +1,223 @@
+.word-font{
+    font-family:'Lucida Grande', 'Arial', 'sans-serif';
+    text-align:center;
+}
+
+.word-catagory-size{
+    font-size:30px;
+}
+
+.word-device-size{
+    font-size:20px;
+}
+
+.div-inline{
+    display:inline-block;
+}
+
+.div-outer{
+    border-style:solid;
+    border-width:2.5px;
+    width:100%;
+    border-radius:8px 8px 8px 8px;
+}
+
+.div-border{
+    border-style:solid;
+    border-width:2.5px;
+}
+
+.div-catagory-border{
+    border-bottom-style:solid;
+    border-width:2.5px;
+}
+
+.div-device-border{
+    border-bottom-style:solid;
+    border-left-style:solid;
+    border-width:2.5px;
+}
+
+.div-catagory-device{
+    width:100%;
+}
+.div-catagory{
+    float:left;
+    border-radius:8px 0px 0px 0px;
+    width:25%;
+}
+
+.div-device{
+    border-radius:0px 8px 0px 0px;
+    float:left;
+    width:75%;
+    text-align:center;
+}
+
+.div-features{
+    width:100%;
+}
+
+.div-obstacle {
+    float:center;
+    height: 37px;
+}
+.feature_obj{
+    margin:3px;
+    float:center;
+    border-radius:8px 8px 8px 8px;
+    text-align:center;
+    box-shadow:4px 4px 3px rgba(20%,20%,40%,0.5);
+}
+
+.code-device-obj {
+    float:left;
+}
+
+.code-setting-obj{
+    cursor: pointer;
+    height: 42px;
+    width: 25%;
+    float: left;
+    border-bottom-style: solid;
+    border-width: 2.5;
+}
+
+.code-name-obj {
+    border: 0px;
+    cursor: pointer;
+    border-radius: 0px 8px 0px 0px;
+    float: left;
+    width: 75%;
+    text-align: center;
+    height: 42px;
+    line-height: 37px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-width: 2.5px;
+}
+
+.code-feature-obj {
+    height: 42px;
+    margin: 3px;
+    float: center;
+    border-radius: 8px 8px 8px 8px;
+    text-align: center;
+    box-shadow: 4px 4px 3px rgba(20%,20%,40%,0.5);
+    border-style: solid;
+    border-width: 2.5px;
+    float:left;
+    width: 96%;
+}
+
+.code-feature-obj span {
+    line-height:42px;    
+    cursor:pointer;
+}
+
+.code-feature-obj img {
+    float:right;
+    height: 42px;
+    cursor:pointer;
+}
+
+.code-feature-object-span {
+    cursor: pointer;
+    line-height: 37px;
+    font-size: 12px;
+    width: 60%;
+}
+
+.code-feature-object-img {
+    cursor: pointer;
+    height: 37px;
+    width: 37px;
+    float: right;
+}
+
+.img-input-feature{
+    float:right;
+}
+
+.img-output-feature{
+    float:left;
+}
+
+.label-catagory{
+    float:left;
+    width:100%;
+}
+
+.label-device{
+    width: 100%;
+    height: 100%;
+    text-align:center;
+    border: 0;
+    border-radius: 0px 2px 0px 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.label-feature{
+    font-size:12px;
+    width:60%;
+	overflow-x:hidden;
+}
+
+.da-title {
+    border-style: solid;
+    border-width: 2.5px;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.da-email-div {
+    border-style: solid;
+    width: 100%;
+    height: 35px;
+    text-align: left;
+    border-width: 2.5px;
+    border-top-style: none;
+    padding-top: 3px;
+}
+
+.da-sms-div {
+    border-style: solid;
+    border-width: 2.5px;
+    width: 100%;
+    height: 35px;
+    text-align: left;
+
+    border-top-style: none;
+    border-radius: 0px 0px 5px 5px;
+    padding-top: 3px;
+}
+
+.da-email-div label, .da-sms-div label{
+	/*width:35%;*/
+    margin-left: 5px;
+}
+
+.da-email-div input, .da-sms-div input  {
+	/*width:40%;*/
+}
+
+@media screen and (max-width:565px){
+	.da-email-div label {
+		width:45%;
+	}
+	.da-sms-div label {
+		width:45%;
+	}
+
+}
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IoTtalk Homepage</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'font.css') }}">
+</head>
+<body>
+    <h4 style="margin-bottom:0;">IoTtalk:</h4>
+<div>
+    <ul style="margin:0;">
+      <li><a href="#" onclick="window.open('http://'+location.hostname+':7788/connection', '_blank');">Project</a></li>
+      <li><a href="#" onclick="window.open('http://'+location.hostname+':7788/dfm', '_blank');">Device Feature Management</a></li>
+      <!--      <li><a href="#" onclick="window.open('http://'+location.hostname+':7788/download_feature', '_blank');">Download Device Feature</a></li>-->
+      <li><a href="#" onclick="window.open(window.location.origin+'/list_all', '_blank');">Device Monitor</a></li>
+      <li><a href="#" onclick="window.open('http://'+location.hostname+':7788/projectMgr', '_blank');">Project Management </a></li>
+    </ul>
+  </div>
+
+  <div>
+  <h4 style="margin-bottom:0;">Cyber Device List:</h4>
+    <ul style="margin:0;">
+      {% for da_name in js_da_list %}
+      <li><a href="/da/{{da_name}}" target='_blank'>{{da_name}}</a></li>
+      {% endfor %}
+      <!--{% for da_name in vp_da_list %}
+      <li><a href="/da/vp/web_py_index.html#{{da_name}}" target='_blank'>{{da_name}}</a></li>
+      {% endfor %}-->
+
+<!--
+	  <li><a href="#" target='_blank' onclick="window.open('http://'+location.hostname+':5566', '_blank');">MusicBox</a></li>
+      <li><a href="#" target='_blank' onclick="window.open('http://'+location.hostname+':5566/mboxctl', '_blank');">MusicBoxController</a></li>
+-->
+
+    </ul>
+  <h4 style="margin-bottom:0;">VPython List:</h4>
+    <ul style="margin:0;">
+      {% for da_name in vp_da_list %}
+      <li><a href="/da/vp/web_py_index.html#{{da_name}}" target='_blank'>{{da_name}}</a></li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</body>
+</html>

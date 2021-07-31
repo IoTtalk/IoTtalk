@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{device_id}}</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    
+    <script src="{{ url_for('static', filename = 'csmapi_modified.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'RemoteControl.js') }}"></script>
+
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename = 'Slider/css/materialize.min.css') }}"  media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'Slider/css/mobile.css') }}">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap-theme.min.css') }}" >
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap-toggle.min.css') }}">
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap-toggle.min.js') }}"></script>    
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'knob/knobKnob.css') }}">
+    <script src="{{ url_for('static', filename = 'knob/transform.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'knob/knobKnob.jquery.js') }}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'tri-toggle-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'font.css') }}">
+
+   </head>
+
+    <script>
+        set_device_id('{{ device_id }}');
+        load_alias('{{ device_id }}', 'Keypad', {{df_dict['Keyp']}});
+        load_alias('{{ device_id }}', 'Button', {{df_dict['Butt']}});
+        load_alias('{{ device_id }}', 'Color-I',{{df_dict['Colo']}});
+        load_alias('{{ device_id }}', 'Knob',   {{df_dict['Knob']}});
+        load_alias('{{ device_id }}', 'Switch', {{df_dict['Swit']}});
+        load_alias('{{ device_id }}', 'Toggle', {{df_dict['Togg']}});
+        load_alias('{{ device_id }}', 'Slider', {{df_dict['Slid']}});
+        load_state('Switch', {{df_dict['Swit']}}, update_switch_state);
+        load_state('Toggle', {{df_dict['Togg']}}, update_toggle_state);
+        load_state('Slider', {{df_dict['Slid']}}, update_slider_state);
+    </script>   
+
+  <body>
+    <TD style="FONT-SIZE: 24px; COLOR:#000000; LINE-HIGHT:50px; FONT-FAMILY:Arial,Helvetica,sans-serif">
+    <legend>
+        <span class="text-success" style="white-space:nowrap;">{{device_id}}</span>
+        <button type="button" class="btn btn-danger close" aria-label="Close" onclick="dereg('{{device_id}}')"> <span aria-hidden="true">&times;</span> </button>
+    </legend>
+
+
+
+
+    {% for i in range(df_dict['Keyp']) %}
+<div class="container-fluid">
+    <legend class="text-primary Keypad{{i+1}} h2">Keypad{{i+1}}</legend>
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[1])" style="color:black; font-size: 110%;">1</button>
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[2])" style="color:black; font-size: 110%;">2</button>
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[3])" style="color:black; font-size: 110%;">3</button>  
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[4])" style="color:black; font-size: 110%;">4</button>
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[5])" style="color:black; font-size: 110%;">5</button><br>
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[6])" style="color:black; font-size: 110%;">6</button> 
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[7])" style="color:black; font-size: 110%;">7</button>
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[8])" style="color:black; font-size: 110%;">8</button>
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[9])" style="color:black; font-size: 110%;">9</button> 
+      <button type="button" class="btn btn-default"  onclick="csmapi.push('{{ device_id }}','','Keypad{{i+1}}',[0])" style="color:black; font-size: 110%;">0</button>
+</div>
+    {% endfor %}
+<br>
+ 
+    {% if df_dict['Butt'] != 0 %} 
+    <!-- <legend class="text-primary h2">Button</legend> -->
+        {% for i in range(df_dict['Butt']) %}
+	<button type="button" class="btn btn-info Button{{i+1}} h6" onclick="csmapi.push('{{ device_id }}','','Button{{i+1}}',[{{i+1}}])" style="width:200px; color:black;" >Button{{i+1}}</button> <br>
+        {% endfor %}
+    <br>	
+    {% endif %}
+
+
+    {% for i in range(df_dict['Colo']) %}
+    <legend class="text-primary Color-I{{i+1}} h2">Color-I{{i+1}}</legend>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[255,0,0])" style="width:100px; height:100px; background-color:#FF0000"></button>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[255,85,17])" style="width:100px; height:100px; background-color:#FF5511 "></button>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[255,255,0])" style="width:100px; height:100px; background-color:#FFFF00"></button> <br>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[0,255,0])" style="width:100px; height:100px; background-color:#00FF00"></button>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[0,0,255])" style="width:100px; height:100px; background-color:#0000FF"></button>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[102,0,255])" style="width:100px; height:100px; background-color:#6600FF"></button> <br>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[255,0,255])" style="width:100px; height:100px; background-color:#FF00FF"></button>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[255,255,255])" style="width:100px; height:100px; background-color:#FFFFFF"></button>
+    <button type="button" class="btn btn-outline-success" onclick="csmapi.push('{{ device_id }}','','Color-I{{i+1}}',[0,0,0])" style="width:100px; height:100px; background-color:#000000"></button> <br><br>
+    {% endfor %}
+    
+
+    {% if df_dict['Swit'] != 0 %} 
+        {% if sync %}
+        <script>
+            console.log('Switch sync mode: ON.');
+            setInterval(load_state, 3000, 'Switch', {{df_dict['Swit']}}, update_switch_state);
+        </script>
+        {% endif %}
+
+    <!-- <legend class="text-primary h2">Switch</legend> -->
+        {% for i in range(df_dict['Swit']) %}
+        <div class="checkbox" style=" white-space:nowrap;">
+            <label>
+	        <input  type="checkbox" data-toggle="toggle" id="Switch{{i+1}}">
+	        <span class = "text-primary Switch{{i+1}} h2"  style=" white-space:nowrap;"> Switch{{i+1}} </span>
+            </label>
+        </div>
+        {% endfor %}
+    <br>
+    {% endif %}
+
+    
+    {% if df_dict['Togg'] != 0 %} 
+        {% if sync %}
+        <script>
+	    console.log('Toogle sync mode: ON.');
+            setInterval(load_state, 3000, 'Toggle', {{df_dict['Togg']}}, update_toggle_state);
+        </script>	    
+        {% endif %}
+
+    <!-- <legend class="text-primary h2">Toggle</legend> -->
+    
+        {% for i in range(df_dict['Togg']) %}
+
+<div style="white-space:nowrap;">    
+        <div class="tri-state-toggle" style="display:inline-block;"> 
+		  <button class="tri-state-toggle-button tri-Toggle{{i+1}}" id="Toggle{{i+1}}-button0" onclick="csmapi.push('{{ device_id }}','','Toggle{{i+1}}',[1])">
+		    <span>On</span>
+		  </button>
+		  <button class="tri-state-toggle-button tri-Toggle{{i+1}} off-button" id="Toggle{{i+1}}-button1" onclick="csmapi.push('{{ device_id }}','','Toggle{{i+1}}',[0])">
+			  <span>Off</span>
+		  </button>
+		  <button class="tri-state-toggle-button tri-Toggle{{i+1}}" id="Toggle{{i+1}}-button2" onclick="csmapi.push('{{ device_id }}','','Toggle{{i+1}}',[2])">
+			  <span>Auto</span>
+		  </button>
+		</div>
+        <span class = "text-primary Toggle{{i+1}} h2"  style=" white-space:nowrap;"> Toggle{{i+1}} </span>
+</div>
+        {% endfor %}
+    <br>
+    {% endif %}
+
+
+    {% for i in range(df_dict['Knob']) %}
+    <legend class="text-primary Knob{{i+1}} h2">Knob{{i+1}}</legend>
+    <div style='margin-top:-33px; margin-bottom:15px;'  type='text' deviceId='{{device_id}}' dfName='Knob{{i+1}}' class='knob-container'></div>
+    {% endfor %}
+
+
+    <div class="slider-items">
+      <table id="slider_items">
+    {% for i in range(df_dict['Slid']) %}
+        <tr>
+            <th class="text-primary Slider{{i+1}} h2" colspan="2"> Slid{{i+1}} </th>
+        </tr>
+        <tr>
+            <td class='td_val' width='5%'>
+                <span id="Slider{{i+1}}_val" margin='auto'> 0 </span>
+            </td>
+            <td >
+                <form action='#'>
+                    <p class='range-field'>
+                        <input type='range' id="Slider{{i+1}}-slider" min=0  max=100 step=1 value=0 />
+                    </p>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+      </table>
+    </div>
+    
+
+  </body>
+</html>

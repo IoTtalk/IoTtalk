@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{mac_addr}}</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename = 'csmapi_modified.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'SwitchSet.js') }}"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap-theme.min.css') }}" >
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap-toggle.min.css') }}">
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap-toggle.min.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'font.css') }}">
+  </head>
+  <body>
+    <legend>
+        <span class="text-success"> {{mac_addr}} </span>
+        <button type="button" class="btn btn-danger close" aria-label="Close" onclick="dereg('{{mac_addr}}')"> <span aria-hidden="true">&times;</span> </button>
+    </legend>
+
+    {% for i in range(count) %}
+    <div class="checkbox">
+        <label>
+	    <input  type="checkbox" data-toggle="toggle" id="Switch{{i+1}}">
+	    <span class = "Switch{{i+1}} h2"> Switch{{i+1}} </span>
+        </label>
+    </div>
+    {% endfor %}
+
+    <script> 
+        set_device_id('{{ mac_addr }}', {{count}});
+        check_registerion_state('{{ mac_addr }}');
+    </script>
+
+  </body>
+</html>

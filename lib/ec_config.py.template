@@ -1,0 +1,22 @@
+
+SQLITE_PATH = '/path/to/sqlite/database/directory/'
+MYSQL_HOST = 'your-mysql-host.com'
+MYSQL_USER = 'username_of_MySQL'
+MYSQL_PASS = 'password_of_MySQL'
+
+DB_NAME = 'your_db_name'
+
+LOG_PATH = '/path/to/log/directory/'
+
+CSM_HOST = '0.0.0.0'
+CSM_PORT = 9999
+CSM_DEBUG = True
+CSM_SAMPLE_THRESHOLD = 100      # number of samples to keep in dfm_logs.
+CSM_PULL_SAMPLE_LEN = 2
+
+ESM_EXEC_DATA_PATH_RATE = 0.2   # sec
+ESM_UMOUNT_ALL_ON_START = True
+
+BROADCAST_IF = 'eth0'
+BROADCAST_PORT = 17000
+

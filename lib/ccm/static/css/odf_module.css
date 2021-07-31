@@ -1,0 +1,138 @@
+.div-odf-outer{
+    width: 100%;
+    height: 182px;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 2.5px;
+}
+
+.label-odf{
+    line-height: 35px;
+    width: 100%;
+    height: 32px;
+    text-align: center;
+    border-color: transparent;
+}
+
+.div-odf-column-left{
+    width: 30%;
+    float: left;
+}
+
+.div-odf-column-right{
+    width: 70%;
+    float: left;
+    /*
+    border-left-style: solid;
+    border-width: 2.5px;
+    */
+}
+
+.div-odf-column-title-left{
+    width: 100%;
+    height: 35px;
+}
+
+.div-odf-column-title-right{
+    width: 100%;
+    height: 35px;
+    border-left-style: solid;
+    border-width: 2.5px;
+}
+
+.div-odf-tab-title{
+    width: 100%;
+    height: 35px;
+    border-top-style: solid;
+    border-width: 2.5px;
+}
+
+.div-odf-first-tab-title{
+    width: 100%;
+    height: 35px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-width: 2.5px;
+}
+
+.div-odf-tab-title-left{
+    width: 50%;
+    height: 35px;
+    float: left;
+}
+
+.div-odf-tab-title-right{
+    width: 50%;
+    height: 35px;
+    border-left-style: solid;
+    border-width: 2.5px;
+    float: left;
+}
+
+.div-odf-tab-title-min{
+    width: 50%;
+    height: 33px;
+    float: left;
+}
+
+.div-odf-tab-title-max{
+    width: 50%;
+    height: 33px;
+    border-left-style: solid;
+    border-width: 2.5px;
+    float: left;
+}
+
+.div-odf-tab-content{
+    width: 100%;
+    height: 35px;
+    border-top-style: solid;
+    border-width: 2.5px;
+}
+
+.div-odf-item-content{
+    width: 100%;
+    height: 35px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-width: 2.5px;
+}
+
+.div-odf-tab-content-left{
+    width: 50%;
+    height: 35px;
+    float: left;
+}
+
+.div-odf-tab-content-right{
+    width: 50%;
+    height: 35px;
+    border-left-style: solid;
+    border-width: 2.5px;
+    float: left;
+}
+
+.div-odf-tab-normal-left{
+    float: left;
+    width: 50%;
+    height: 35px;
+}
+
+.div-odf-tab-normal-right{
+    float: left;
+    width: 50%;
+    height: 35px;
+    border-left-style: solid;
+    border-width: 2.5px;
+}
+
+.label-odf-function{
+    line-height: 35px;
+    width: 100%;
+    height: 32px;
+    text-align: center;
+    border-color: transparent;
+}
+
+

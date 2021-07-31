@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <title>IoTtalk</title>
+    <!-- Load c3.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.16/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.16/c3.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/jquery-ui/jquery-ui.min.css">
+
+    <link rel="stylesheet" href="/static/css/other/fading.css">
+    <link rel="stylesheet" href="/static/css/other/main.css">
+    <link rel="stylesheet" href="/static/css/object.css">
+    <link rel="stylesheet" href="/static/css/wa_set_model.css">
+    <link rel="stylesheet" href="/static/css/wa_set_mapping_function.css">
+    <link rel="stylesheet" href="/static/css/wa_set_parameter.css">
+    <link rel="stylesheet" href="/static/css/idf_module.css">
+    <link rel="stylesheet" href="/static/css/odf_module.css">
+    <link rel="stylesheet" href="/static/css/join_module.css">
+    <link rel="stylesheet" href="/static/css/add_function.css">
+    <link rel="stylesheet" href="/static/css/codemirror.css">
+    <link rel="stylesheet" href="/static/css/add_new_porject_modal.css">
+
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/static/jquery.ui.dialog.patch.js"></script>
+    <script src="/static/js/prettify.js"></script>
+    <script src="/static/js/codemirror.js"></script>
+    <script src="/static/js/codemirror-python.js"></script>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/plugin.js"></script>
+    <script src="/static/ajax.js"></script>
+    <script src="/static/make.js"></script>
+    <script src="/static/gui.js"></script>
+    <link rel="stylesheet" href="/static/css/monitor.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script>
+    var p_id = {{p_id}};
+    var alert_message = "";
+    var exception_timer = null;
+    var monitor_timer = null;
+    var ctx = null;
+    var isTabHidden = false;
+
+    $(function(){
+            // Set the name of the hidden property and the change event for visibility
+            var hidden, visibilityChange; 
+            if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+              hidden = "hidden";
+              visibilityChange = "visibilitychange";
+            } else if (typeof document.msHidden !== "undefined") {
+              hidden = "msHidden";
+              visibilityChange = "msvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") {
+              hidden = "webkitHidden";
+              visibilityChange = "webkitvisibilitychange";
+            }
+
+            function handleVisibilityChange() {
+              if (document[hidden]) {
+                isTabHidden = true;
+              } else {
+                isTabHidden = false;
+              }
+            }
+            // Warn if the browser doesn't support addEventListener or the Page Visibility API
+            if (typeof document.addEventListener === "undefined" || typeof document[hidden] === "undefined") {
+              console.log("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+            } else {
+              // Handle page visibility change   
+              document.addEventListener(visibilityChange, handleVisibilityChange, false);
+            }
+            gui_init();
+            if(window.location.hash){
+              var hash_value = window.location.hash.replace('#', '');
+              var allproj = document.querySelectorAll('li.project-list > a');
+              for(var i = 0; i < allproj.length; i++){
+                if(allproj[i].firstChild.textContent == hash_value){
+                  console.log(allproj[i].name, hash_value);
+                  enter_project(allproj[i].name, hash_value);
+                }
+              }
+            }
+    });
+    </script>
+
+  </head>
+  <body style='-webkit-user-select:none'>
+    <div id="wrapper">
+
+      <div id="header">
+        <nav id="nav" class="navigation lcyan" style="position: relative; left: auto; min-width: 750px;">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <!--Add new prject modal start-->
+                <div class="modal fade" id="newPorjectModal" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" id="newPorjectModalDialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <form role="form">
+                          <div class="form-group">
+                            <label for="project-name" class="control-label">Enter Project Name</label>
+                            <input type="text" class="form-control" id="project-name">
+                            <p id="projectNameAlert" class="modalAlert"></p>
+                          </div>
+                          <div class="form-group">
+                            <label for="project-pwd" class="control-label">Enter Project Password</label>
+                            <input type="password" class="form-control" id="project-pwd">
+                            <p id="projectPwdAlert" class="modalAlert"></p>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="modalOKBtn" class="btn btn-primary">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="passwordCheckModal" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" id="passwordCheckModalDialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <!-- <form role="form"> -->
+                          <div class="form-group">
+                            <label for="project-pwd" class="control-label" id="checkPwdHeader">Enter Project Password</label>
+                            <input type="password" class="form-control" id="check-pwd">
+                            <p id="checkPwdAlert" class="modalAlert"></p>
+                          </div>
+                        <!-- </form> -->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="checkPwdBtn" class="btn btn-primary">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Add new prject modal end-->
+                <ul class="menu fading l_tinynav1">
+                    <li id="project_pull_down_menu" name={{p_id}}><a> {{p_name}} </a>
+                    <ul>
+                        {% for project in project_list %}
+                        <li class="project-list" ><a name={{project[1]}}>{{project[0]}}</a></li>
+                        {% endfor %}
+                    </ul>
+                  </li>
+                  <li id="model_pull_down_menu" class="dm-list"><a href="#"><i class="icon-file"></i> Model </a>
+                    <ul>
+                    {% for model in model_list %}
+                      <li class="model-list"><a>{{model}}</a></li>
+                    {% endfor %}
+                    </ul>
+                  </li>
+                  <li><img src='/static/images/on.png' id="switch_off_project"></li>
+
+                  <li id="delete_project"><a href="#"><i class="icon-file"></i>Delete</a></li>
+                  <li class="alert-message alert-message-hidden" style="border-right:0px"><img src='/static/images/alert.png'/></li>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div id="content">
+        <div class="">
+          <div id="graphical_layout_window" class="col-sm-6">
+            <h1 id="alertMessage"></h1>
+            <canvas id="background"></canvas>
+
+            <div id="in_device_column"></div>
+            <div class="map-column">
+               {% for index in join_number %}
+                  <div class="map-block">
+                    <div class="map-lable-div">
+                      <label name="{{index}}" class="join-input hidden-flag" style="cursor:help;">Join {{index+1}}</label>
+                    </div>
+                    <div class="map-img-div">
+                      <img name="{{index}}" class="hidden-flag" style="cursor:pointer;" src="/static/images/circle.png"/>
+                      </div>
+                  </div>
+                {% endfor %}
+            </div><!-- map_column -->
+            <div id="out_device_column"></div>
+
+          </div>
+          <div id="work_area"class="col-sm-6">
+            <div id="management_window"></div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

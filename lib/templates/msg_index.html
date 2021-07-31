@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Message</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap-theme.min.css') }}" >
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'msg_save_load.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'font.css') }}">
+  </head>
+  <body>
+
+<div class="container">
+    {% if (count==0) %}
+        <h2>Please select and bind "Message" in the GUI.</h2>
+    {% else %}     
+        <h4><b>Message Management</b></h4>
+        {% for i in range(count) %}
+        <div class="row form-group">
+            <div class="col-md-1">
+                <button type="button" class="btn btn-danger btn-xs"  onclick="clear_row({{i}})">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="input-group">
+   	            <span class="input-group-addon alias">Name{{i+1}}</span>
+	            <input type="text" class="form-control name" placeholder="Phone/e-mail">
+	        </div>
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <input type="text" class="form-control message" placeholder="Default message">
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+          
+        <button type="button" class="btn btn-success " data-loading-text="Saving..." onclick="save_info()"> Save </button>  
+        <script>
+            $(function() {
+                $(".btn-success").click(function(){
+                    $(this).button('loading').delay(1000).queue(function(){
+                      $(this).button('reset');
+                      $(this).dequeue();
+                    });
+                });
+            });
+        </script>
+
+        <button type="button" class="btn btn-danger pull-right"  onclick="clear_info()"> Clear all </button>
+<!--
+        <button type="button" class="btn btn-primary" data-loading-text="Loading..." onclick="load_info()"> Load </button>
+        <script>
+            $(function() {
+                $(".btn").click(function(){
+                    $(this).button('loading').delay(1000).queue(function(){
+                      $(this).button('reset');
+                      $(this).dequeue();
+                    });
+                });
+            });
+        </script>
+-->
+        <script> load_info({{ count }}) </script>
+    {% endif %}
+
+</div>
+  </body>
+</html>

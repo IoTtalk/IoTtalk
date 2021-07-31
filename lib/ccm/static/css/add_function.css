@@ -1,0 +1,166 @@
+.div-add-function-outer{
+    width: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 2.5px;
+    height:500px;
+}
+
+.input-program-block{
+    overflow-y:visible;
+    width: 100%;
+    height:132px; /* calculate */
+}
+
+.input-argument-block{
+    overflow-y:visible;
+    width: 100%;
+    height:30px;
+    margin-bottom:5px;
+    margin-top:5px;
+}
+.non-df-argument-class{
+	height:100px;
+	width:100px;
+}
+
+.div-status-block{
+    width: 100%;
+    height:33px;
+    line-height:33px;
+    border-radius: 0px 0px 5px 5px;
+    border-top-style: solid;
+    border-width: 2.5px;
+}
+.div-program-title{
+    float:right;
+    width: 100%;
+    height:33px;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom-style: solid;
+    border-width: 2.5px;
+    background-color:#BEBEBE;
+}
+
+.div-new-function-title{
+    float:right;
+    width: 100%;
+    height:33px;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-width: 2.5px;
+    background-color:#BEBEBE;
+}
+
+.add-label{
+    float:left;    
+    width:10%;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 2.5px;
+}
+
+.function_edit{
+    margin-left:1%;
+}
+
+.close_button{
+    height:90%;
+    float:right;
+    margin-right:1%;
+    line-height:18px;
+}
+
+.save_button{
+    float:right;
+    margin-top:2%;
+    margin-right:1%;
+}
+
+.single_save_button{
+    float:right;
+    height:90%;
+    margin-right:1%;
+    margin-top:2px;
+    line-height:18px;
+}
+
+.delete_button{
+    float:right;
+    height:90%;
+    margin-right:1%;
+    margin-top:2px;
+    line-height:18px;
+}
+
+
+#function_name, #input_num, #vargs_radio{
+    margin:5px;
+}
+.div-intro-block {
+    padding:10px;
+}
+
+.div-intro-block-left {
+    padding:10px;
+    width: 40%;      
+    /*background-color: red;*/     
+    display: block;      
+    position: relative;      
+    float: left;
+    height: 25%;
+}
+.div-intro-block-middle {
+    padding:10px;
+    width: 20%;      
+    /*background-color: yellow;*/    
+    display: block;      
+    position: relative;      
+    float: left;
+    height: 25%;
+
+}
+.div-intro-block-right {
+    padding:10px;
+    width: 40%;      
+    /*background-color: blue;*/    
+    display: block;      
+    position: relative;      
+    float: left;
+    height: 25%;
+
+}
+.other_function_select, .exist_function_select {
+    width: 100%;
+    position: relative;
+    height: 30%;
+}
+
+.div-intro-block-middle-side {
+    width: 30%;
+    /*background-color: green;*/
+    height: 100%;
+    float: left;
+}
+
+.div-intro-block-middle-content {
+    float: left;
+    width: 35%;
+    text-align: center;
+    position: relative;
+    top: 23%;
+}
+
+.div-intro-block-right-button {
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#delete_function {
+    margin-bottom:5px;
+}
+
+.disable-flag {
+    display:none;
+}

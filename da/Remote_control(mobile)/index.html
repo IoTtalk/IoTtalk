@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Remote_control</title>
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="css/keypad.css">
+    <link rel="stylesheet" type="text/css" href="css/switch.css">
+    <link rel="stylesheet" type="text/css" href="css/footer-nav.css">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+
+    <script src="knob/transform.js"></script>
+    <link rel="stylesheet" href="knob/knobKnob.css">
+    <script src="knob/knobKnob.jquery.js"></script>
+</head>
+<body>
+
+    <main class="transition">
+
+        <section id="keypad-page" class="flex-center">
+            <header>
+                <span>
+                    Keypad
+                    <small></small>
+                </span>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                </select>
+            </header>
+            <div class="keypad">
+                <div>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+                <div>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                </div>
+                <div>
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                </div>
+                <div>
+                    <button>0</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="knob-page" class="flex-center">
+            <header>
+                <span>
+                    Knob
+                    <small></small>
+                </span>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                </select>
+            </header>
+            <div>
+                <div class="knob-container"></div>
+            </div>
+        </section>
+
+
+        <section id="switch-page" class="flex-center">
+            <header>
+                <span>
+                    Switch
+                    <small></small>
+                </span>
+            </header>
+            <div class="switch">
+                <div>
+                    <div class="toggle-button"><button>1</button></div>
+                    <div class="toggle-button"><button>2</button></div>
+                    <div class="toggle-button"><button>3</button></div>
+                </div>
+                <div>
+                    <div class="toggle-button"><button>4</button></div>
+                    <div class="toggle-button"><button>5</button></div>
+                    <div class="toggle-button"><button>6</button></div>
+                </div>
+                <div>
+                    <div class="toggle-button"><button>7</button></div>
+                    <div class="toggle-button"><button>8</button></div>
+                    <div class="toggle-button"><button>9</button></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <nav>
+        <div for="keypad-page">
+            <header><img src="img/keypad.png"></header>
+            <footer>Keypad</footer>
+        </div>
+        <div for="knob-page">
+            <header><img src="img/knob.png"></header>
+            <footer>Knob</footer>
+        </div>
+        <div for="switch-page">
+            <header><img src="img/switch.png"></header>
+            <footer>Switch</footer>
+        </div>
+    </nav>
+
+
+    <script type="text/javascript" src="js/iottalk-api.js"></script>
+    <script type="text/javascript">
+        window.mac = Math.random().toString().slice(2);
+        window.d_name = null;
+    </script>
+    <script type="text/javascript" src="js/footer-nav.js"></script>
+    <script type="text/javascript" src="js/keypad.js"></script>
+    <script type="text/javascript" src="js/knob.js"></script>
+    <script type="text/javascript" src="js/switch.js"></script>
+    <script type="text/javascript" src="js/registering.js"></script>
+    <script type="text/javascript" src="js/fingertouch.js"></script>
+
+</body>
+</html>

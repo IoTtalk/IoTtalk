@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw" lang="zh-tw">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">	  
+    <title>Project Management</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>    
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">    
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/static/projectMgr.js"></script>
+  </head>
+
+  <style>
+    .table-hover thead tr:hover th, .table-hover tbody tr:hover td {
+        background-color: #DDEEFF;
+    }
+  </style>
+
+  <body style="background-color:#FFFFFF;"  >	  
+
+    <div class="container">
+	<h4><b>Project Management</b></h4>    
+	<p>Click a project name to enter the project, click "Delete" to delete a project, 
+	   or click green/red dots to turn off/on a project/simulator.</p>
+        <table class="table table-hover"> 
+          <thead>
+            <tr>
+               <th style="width: 7%">Action</th>
+               <th>Project Name</th>
+               <th style="width: 7%">Status</th>
+               <th style="width: 7%">Exception</th>
+	       <th style="width: 7%">Simulator</th>
+
+            </tr>
+          </thead>		
+          <tbody>
+            {% for id, name, status, simulation, exception in projects_info %}
+            <tr>
+              <td style="width: 7%;">
+                  <button type="button" class="btn btn-danger btn-xs" onclick="delete_project({{id}}, '{{name}}')">Delete</button>
+                  &nbsp;
+                  <button type="button" class="btn btn-danger btn-xs" onclick="reset_project_password({{id}}, '{{name}}')">Reset PWD</button>
+              </td>
+              <td><a href="#" onclick="open_project('{{name}}')"><b>{{name}}</b></a></td>
+     	      <td style="width: 7%" align='center' valign="middle"> <img src='' width='30%' id='project{{id}}'> </td>
+	      <td style="width: 7%" align='center' valign="middle"> 
+                  <img src='' width='30%' id='exception{{id}}'> 
+              </td>
+	      <td style="width: 7%" align='center' valign="middle"> <img src='' width='30%' id='simulation{{id}}'> </td>
+            </tr>
+	    <script> 
+                    status_fig('{{status}}', 'project{{id}}', {{id}});
+                    status_fig('{{simulation}}', 'simulation{{id}}', {{id}});
+                    exception_fig(String.raw`{{exception}}`, 'exception{{id}}');
+	    </script>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </body>
+</html>
+
+

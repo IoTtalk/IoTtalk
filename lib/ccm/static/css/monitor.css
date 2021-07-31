@@ -1,0 +1,43 @@
+.div-monitor-outer {
+}
+
+.log-mode {
+	background-color:white;
+}
+
+.simulator-mode {
+	background-color:white;
+}
+
+.control_button {
+    float:right;
+    height:90%;
+    margin-right:2px;
+    margin-top:2px;
+    line-height:18px;
+}
+
+.input-df-select, .output-df-select {
+    height: 25px;
+    text-align: center;
+    background-color: white;
+    border-style: none;
+    float: right;
+    margin-right: 2px;
+    margin-top: 3px;
+}
+
+.step-select {
+    height: 25px;
+    text-align: center;
+    background-color: white;
+    border-style: none;
+    float: right;
+    margin-right: 2px;
+    margin-top: 3px;
+    float: left;
+}
+
+.in-monitor-target, .out-monitor-target {
+    border-color:red
+}

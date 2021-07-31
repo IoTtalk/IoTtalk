@@ -1,0 +1,326 @@
+#wrapper {
+    width:100%;
+    margin:auto;
+    background-color:black;    
+}
+
+#header {
+    height:auto;
+}
+
+#content {
+    height:auto;
+    background-color:black;
+}
+
+#menu-title{ border-left-width: 0px; height:100%;}
+#menu-title label { border-left-width: 0px; color:black; font-size:16; line-height:47px; margin-right:21px; font-weight:bold }
+#menu-non-button a {visibility:hidden} 
+.workspace-title { border-left-width: 0px; color:black; font-size:16; line-height:47px; margin-right:21px; font-weight:bold; margin-left:40%}
+
+#background {
+    z-index:0;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+
+#graphical_layout_window {
+    background-color:#ffffff;
+    height:auto;
+    margin:0 auto;
+    padding-top:2%;
+    padding-bottom:2%;
+}
+
+#in_device_column, #out_device_column {
+    position:relative;    
+    height:100%;
+    background-color:#ffffff;/* TODO */
+    width:25%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;        
+    z-index:1;
+}
+
+.map-column {
+    position:relative;    
+    /*background: rgba(30%,0%,0%,0.3);*/
+    height:100%;
+    /*background-color:#ccccff;/* TODO */
+    width:10%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;        
+    z-index:1;
+    float:left;
+    left:20%;
+}
+
+#in_device_column {
+    float:left;
+}
+
+#out_device_column {
+    float:right;
+}
+
+div[name="in_device"], div[name="out_device"] {
+    width:100%;
+    background-color:white;
+    -webkit-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-top-radius: 5px;
+    border-top-radius: 5px;        
+    margin-bottom:10px; /* default device block gap */
+    z-index:2;
+} 
+
+.map-block{
+    width:100%;
+    height:45px;
+}
+
+.map-block .hidden-flag{
+    visibility:hidden;
+}
+
+.map-lable-div label {
+    width:100%;
+    height:20px;
+    text-align:center;
+    margin-bottom:0px;
+    inline-height:25px;
+    opacity:1;
+}
+
+.map-img-div {
+    width:100%;
+    height:20px;
+}
+
+.map-img-div img{
+    display:block;
+    margin:0 auto;
+    opacity:1;
+}
+
+.feature-circle-clicked {
+    background-color:lightblue;
+}
+
+.feature-clicked {
+    background-color:lightblue;
+}
+
+#work_area {
+    background-color:#E9E9E9; 
+    height:auto;
+    padding-top:2%;
+    padding-bottom:2%;
+}
+
+#management_window {
+    background-color:#e9e9e9; 
+    height:100%;
+    border-radius: 5px;
+} 
+
+#admin-left {
+    background-color:white; 
+    height:100%;
+    border-radius: 5px;
+} 
+
+#admin-right {
+    background-color:#e9e9e9; 
+    height:100%;
+    border-radius: 5px;
+} 
+/* --------------------------- */
+
+#dname-list {
+    list-style-type:none;
+}
+
+#dname-list > div{
+    height:50px;
+    width:100%;
+    background:#000000;
+    list-style-type:none;
+    margin-bottom:2px;
+    text-align:center;
+    line-height:50px;
+    font-size:16;
+    font-weight:bold;
+}
+
+#dname-list > div > a {
+    color:#f2f5f5;
+}
+
+#fname-list {
+    list-style-type:none;
+}
+
+#fname-list > div.odf-option{
+    height:50px;
+    width:100%;
+    background:#e9e9e9;
+    list-style-type:none;
+    /*margin-bottom:2px;*/
+    text-align:center;
+    line-height:50px;
+    font-size:16;
+    font-weight:bold;
+    border-top-style:solid;
+    border-top-width:2.5px;
+}
+
+#fname-list > div.odf-option > a {
+    color:#000000;
+}
+
+#fname-list {
+    border-style:solid;
+    border-width:2.5px;
+    border-radius: 5px 5px 5px 5px;
+    width:100%;
+}
+
+.fname-list-title {
+    background-color:#BEBEBE;
+    font-weight:normal;
+    text-align:center;
+    line-height:35px;
+    height:35px;
+}
+
+.join-input{
+    width:100%; 
+    height:20px; 
+    border-color:transparent; 
+    text-align:center;
+    background-color:transparent;
+}
+
+.alert-message{
+    border-right:0px;
+}
+
+.alert-message > img{
+    width:20px;
+    margin-top:2px;
+    margin-left:10px;
+}
+
+.alert-message-hidden {
+    display:none;
+}
+
+.df-comment-image {
+    height:10px;
+}
+
+.df-comment-wrapper {
+    overflow:hidden;
+    width:300px;
+}
+
+.df-comment-div {
+    width:77%;
+    float:right;
+}
+
+.df-comment-label {
+    border: 0;
+    border-radius: 0px 2px 0px 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    word-wrap: break-word;
+    word-break: normal;
+    background-color:white;
+    margin-right:5px;
+    margin-top:5px;
+    border-radius:5px;
+}
+
+.df-comment-hidden {
+    display:none;
+}
+
+.ui-dialog-titlebar {
+    background-color:#269ccb;
+}
+
+#alert-dialog textarea {
+    width:100%;
+    height:100%;
+    resize: none;
+    border: none;
+    background-color:#eee;
+}
+
+#switch_off_project {
+    height:27px;
+    margin-top:9px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin-top:10px;
+}
+
+th, td {
+    text-align: center;    
+    border: 2px solid rgba(0,0,0,0.48);
+    height: 35px; 
+}
+
+.df-module-title, .join-module-title {
+    background-color:#BEBEBE;
+}
+
+.idf-module-select, .join-module-select {
+    width: 100%; 
+    height: 100%;
+    border-color: transparent;
+}
+
+.odf-module-select {
+    width: 100%; 
+    height: 32px;
+    border-color: transparent;
+}
+
+.module-delete-button {
+    float: right;
+    height: 27px;
+    margin-right: 3px;
+}
+
+.idf-module-func, .join-module-func, .join-module-line  {
+    width: 33%;
+}
+
+.join-mointor-hidden {
+    display:none;
+}
+
+.div-idf-monitor-outer .div-add-function-outer, .div-odf-monitor-outer .div-add-function-outer, .div-join-monitor-outer .div-add-function-outer{
+    height: 282px;
+}
+
+.div-idf-monitor-outer, .div-odf-monitor-outer, .div-join-monitor-outer {
+    margin-bottom:10px;
+}
+.div-intro-block{
+    height: 210px;
+}
+
+
+

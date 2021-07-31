@@ -1,0 +1,28 @@
+.keypad {
+    width: 80%;
+    max-width: 250px;
+}
+
+.keypad > div {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: .5em;
+}
+
+.keypad > div > button {
+    font-size: 20pt;
+    width: 2.5em;
+    height: 2.5em;
+    text-align: center;
+    border: 0;
+    background-color: #41C3BE;
+    color: white;
+}
+
+.keypad > div > button:focus {
+    outline: 0;
+}
+
+.keypad > div > button:active {
+    background-color: #319b98;
+}

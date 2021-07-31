@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>DF Management</title>
+    <link rel="stylesheet" href="static/css/df_creation.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="static/jquery-ui/jquery-ui.min.css">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/other/fading.css">
+    <link  rel="stylesheet" href="static/css/other/main.css">
+    <link rel="stylesheet" href="static/css/object.css">
+    <link rel="stylesheet" href="static/css/wa_set_mapping_function.css">
+    <link rel="stylesheet" href="static/css/wa_set_parameter.css">
+    <link rel="stylesheet" href="static/css/idf_module.css">
+    <link rel="stylesheet" href="static/css/odf_module.css">
+    <link rel="stylesheet" href="static/css/join_module.css">
+    <link rel="stylesheet" href="static/css/dm_creation.css">
+    <link rel="stylesheet" href="static/css/manage.css">
+
+    <script src="static/js/jquery-1.11.1.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/jquery-ui/jquery-ui.min.js"></script>
+    <script src="static/js/prettify.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/plugin.js"></script>
+
+    <script src="static/management/manage_event_handler.js"></script>
+    <script src="static/management/manage_html_maker.js"></script>
+    <script src="static/management/manage_ajax.js"></script>
+    
+    <script> $(function(){ init(); });</script>
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <nav id="nav" class="navigation lcyan" style="position: relative; left: auto;">
+          <div class="container" style="width:100%; padding:0 0 0 0;">
+            <div class="row">
+               <div class="col-md-12">
+                 <ul class="menu fading l_tinynav1">
+                   <li id="dm_df_switch"><a style="color:black">Device Feature</a></li>
+                   {% for category in category_list %}
+                     <li class="category"><a>{{category}}</a></li>
+                   {% endfor %}
+               </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div id="content">
+        <div class="">
+          <div id="connect_block" class="col-sm-6">
+            <div id="df_window_outer"></div>
+          </div>
+          <div id="work_area" class="col-sm-6">
+            <div id="dm_window_outer" class="div-dfc-outer" style="background-color:white"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

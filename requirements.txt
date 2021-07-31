@@ -1,0 +1,9 @@
+#--allow-unverified mysql-connector-python
+#mysql-connector-python
+sqlalchemy==1.0.13
+flask
+requests
+sphinx
+numpy
+flask_httpauth
+cloudant

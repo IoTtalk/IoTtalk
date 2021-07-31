@@ -1,0 +1,131 @@
+.div-parameter-setting{
+    width:50%;
+    height:35px;
+}
+
+.div-wa-parameter-input-column{
+    width:50%;
+    height:35px;
+    float:left;
+    border-right-style:solid;
+    border-top-style:solid;
+    border-width:2.5px;
+}
+
+.div-wa-parameter-parameter-column{
+    width:50%;
+    height:35px;
+    float:left;
+    border-top-style:solid;
+    border-width:2.5px;
+
+}
+
+.div-wa-parameter-input-title-column{
+    width:50%;
+    height:35px;
+    float:left;
+    text-align:center;
+    border-right-style:solid;
+    border-width:2.5px;
+}
+
+.div-wa-parameter-parameter-title-column{
+    width:50%;
+    height:35px;
+    text-align:center;
+    float:left;
+    border-width:2.5px;
+}
+
+.label-wa-parameter-column{
+    line-height:35px;
+    width:100%;
+    height:35px;
+    text-align:center;
+}
+
+.label-wa-parameter-select-column{
+    line-height:35px;
+    height:33px;
+    width:100%;
+    border-color:transparent;
+    text-align:center;
+}
+
+.div-wa-parameter-outer{
+    width:100%;
+    border-style:solid;
+    border-width:2.5px;
+    border-radius:3px 3px 3px 3px;
+    margin-bottom:10px;
+}
+
+.div-wa-parameter{
+    height:35px;
+}
+
+.div-switch-setting{
+    width:50%;
+    height:35px;
+}
+
+.div-wa-switch-input-column{
+    width:50%;
+    height:35px;
+    float:left;
+    border-right-style:solid;
+    border-width:2.5px;
+}
+
+.div-wa-switch-parameter-column{
+    width:50%;
+    height:35px;
+    float:left;
+}
+
+.div-wa-switch-input-title-column{
+    width:50%;
+    height:35px;
+    float:left;
+    text-align:center;
+    border-right-style:solid;
+    border-bottom-style:solid;
+    border-width:2.5px;
+}
+
+.div-wa-switch-parameter-title-column{
+    width:50%;
+    height:35px;
+    text-align:center;
+    border-bottom-style:solid;
+    border-width:2.5px; 
+    float:left;
+}
+
+.label-wa-switch-column{
+    line-height:35px;
+    width:100%;
+    height:35px;
+    border-color:transparent;
+    text-align:center;
+}
+
+.label-wa-switch-select-column{
+    line-height:35px;
+    height:33px;
+    width:100%;
+    text-align:center;
+}
+
+.div-wa-switch-outer{
+    width:50%;
+    border-style:solid;
+    border-width:2.5px;
+    margin-bottom:10px;
+    border-radius:3px 3px 3px 3px;
+}
+
+.div-wa-switch{
+    height:35px;
+}

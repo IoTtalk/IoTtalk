@@ -1,0 +1,205 @@
+.label-dm-type {
+}
+
+#name-input-div, #catagory-input-div {
+    margin-bottom:5px;
+}
+
+#df_setting_block {
+    margin-bottom:10px;
+}
+
+.label-dm-type >  input {
+    margin-right:10px;
+    margin-left:10px;
+}
+
+.label-dmc-title {
+    line-height: 25px;
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 4%;
+}
+
+.div-wa-side{
+    border-left-style:solid;
+    border-right-style:solid;
+    border-width:2.5px;
+}
+
+.div-wa-bottom{
+    border-bottom-style:solid;
+    border-width:2.5px;
+}
+
+.div-wa-top{
+    border-top-style:solid;
+    border-radius: 5px 5px 0px 0px;
+    border-width:2.5px;
+}
+
+.div-wa-model{
+    border-bottom-style:solid;
+    border-width:2.5px;
+    width:100%;
+    height:35px;
+    text-align:center;
+}
+
+.div-wa-range-upper{
+    float:left;
+    width:50%;
+    height:35px;
+}
+
+.div-padding-left{
+    padding-left:5%;
+}
+
+.div-bottom-radius{
+    border-radius:0px 0px 5px 5px;
+}
+
+.div-wa-model-title{
+    padding-left:5%;
+    padding-right:5%;
+    padding-top:1%;
+    height:35px;
+
+}
+
+.feature-margin{
+    margin:1%;
+}
+
+.selected-odf {
+    border-left-style:solid;
+    border-bottom-style:solid;
+    border-right-style:solid;
+    border-width:2.5px;
+    padding-left:5%;
+    overflow-y: scroll;
+    max-height: 100px;
+    /*min-height: 35px;*/
+}
+
+.selected-idf {
+    border-left-style:solid;
+    border-bottom-style:solid;
+    border-right-style:solid;
+    border-width:2.5px;
+    padding-left:5%;
+    overflow-y: scroll;
+    max-height: 100px;
+    /*min-height: 35px;*/
+}
+
+.selected-idf-title {
+    float:right;
+    width: 100%;
+    height:33px;
+    border-radius: 5px 5px 0px 0px;
+    border-style: solid;
+    border-width: 2.5px;
+}
+
+.selected-odf-title {
+    float:right;
+    width: 100%;
+    height:33px;
+    border-left-style:solid;
+    border-bottom-style:solid;
+    border-right-style:solid;
+    border-width: 2.5px;
+}
+
+
+.div-odf{
+    border-left-style:solid;
+    border-bottom-style:solid;
+    border-right-style:solid;
+    border-width:2.5px;
+    padding-left:5%;
+    border-radius:0px 0px 5px 5px;
+    overflow-y: scroll;
+    max-height: 100px;
+    min-height: 35px;
+}
+
+.div-idf{
+    border-left-style:solid;
+    border-bottom-style:solid;
+    border-right-style:solid;
+    border-width:2.5px;
+    padding-left:5%;
+    overflow-y: scroll;
+    max-height: 100px;
+    min-height: 35px;
+    border-radius:0px 0px 5px 5px;
+}
+
+.div-df-title{
+    float:right;
+    width: 100%;
+    height:33px;
+    border-radius: 5px 5px 0px 0px;
+    border-style: solid;
+    border-width: 2.5px;
+}
+
+.label-wa-model{
+    line-height:35px;
+    /*width:100%;*/
+    margin-left:5%;
+    text-align:left;
+}
+
+.model-input-div {
+    margin-bottom: 10px;
+
+}
+
+.category-input-div {
+    height: 25px;
+    text-align: center;
+    background-color: white;
+    border-style: none;
+    float: right;
+    margin-right: 2px;
+    margin-top: 3px;
+
+}
+
+.name-select, .idf-category-select, .odf-category-select{
+  width: 130px;
+  height: 25px;
+  text-align: center;
+  background-color: white;
+  border-style: double;
+  margin-left:5px;
+}
+
+#df_creation_outer {
+  background-color: #ffffff;
+  height: auto;
+  margin: 0 auto;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-left: 25%;
+}
+
+#connect_block {
+    padding-top:2%;
+    padding-bottom:2%;
+}
+
+#df_window_outer {
+  background-color: #ffffff;
+  height: auto;
+  margin: 0 auto;
+}
+
+

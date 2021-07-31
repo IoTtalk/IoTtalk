@@ -10,9 +10,9 @@ This repository contains the code for the open-source IoTtalk. The code for IoTt
 | **Graphical User Interface**  |      ✔      |        ✔        |        ✔        |
 | **Device Feature Management** |      ✔      |        ✔        |        ✔        |
 |  **Device Model Management**  |      ✔      |        ✔        |        ✔        |
-|   **Project Import/Export**   |      ✔      |        ✔        |        ✔        |
+|   **Project Import/Export**   |      ✘      |        ✔        |        ✔        |
 |       **Join Function**       |      ✘      |        ✔        |        ✔        |
-|         **Simulation**         |      ✘      |        ✔        |        ✔        |
+|         **Simulation**        |      ✘      |        ✔        |        ✔        |
 
 
 

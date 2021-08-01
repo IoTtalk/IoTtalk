@@ -805,7 +805,6 @@ def build_company_range_from_service(df_id, mf_id):
             param_type = para_info[idx].param_type,
             u_id = None,
             idf_type = para_info[idx].idf_type,
-            fn_id = para_info[idx].fn_id,
             min = para_info[idx].min,
             max = para_info[idx].max,
             unit_id = para_info[idx].unit_id,
@@ -6008,11 +6007,6 @@ def delete_device_feature():
             .delete()
         )
         (
-            session.query(db.FunctionSDF)
-            .filter(db.FunctionSDF.df_id == df_id[0])
-            .delete()
-        )
-        (
             session.query(db.DeviceFeature)
             .filter(db.DeviceFeature.df_id == df_id[0])
             .delete()
@@ -6107,11 +6101,6 @@ def save_device_feature():
                         db.DF_Parameter.df_id == df_id)
                 .delete()
             )
-            (
-                session.query(db.FunctionSDF)
-                .filter(db.FunctionSDF.df_id == df_id)
-                .delete()
-            )
             session.commit()
         # insert a new entry into DeviceFeature table
         else:
@@ -6126,15 +6115,6 @@ def save_device_feature():
             session.commit()
             df_id = new_df.df_id
 
-        # insert a new entry into DF_Parameter table
-        disabled_name = 'disabled'
-        #disabled_fn_id = (
-        #    session.query(db.Function.fn_id)
-        #    .filter(db.Function.fn_name == disabled_name)
-        #    .first()[0]
-        #)
-        disabled_fn_id = -1
-
         for i in range(len(type_list)):
             normalization = 0 if feature_info['df_type'] == 'IDF' or min_list[i] == max_list[i] else 1
             min_ = None if min_list[i] == '' else min_list[i]
@@ -6146,7 +6126,6 @@ def save_device_feature():
                 param_type = type_list[i],
                 u_id = None,
                 idf_type = 'sample',
-                fn_id = None,
                 min = min_,
                 max = max_,
                 unit_id = unit_list[i],
@@ -6154,37 +6133,6 @@ def save_device_feature():
             )
             session.add(new_parameter)
             session.commit()
-            if feature_info['df_type'] == 'ODF':
-                fn_name = 'x' + str(i + 1)
-                fn_id = (
-                    session.query(db.Function.fn_id)
-                    .filter(db.Function.fn_name == fn_name)
-                    .first()
-                )
-                if fn_id == None:
-                    # 1. insert new entry into Function
-                    new_function = db.Function(fn_name = fn_name)
-                    session.add(new_function)
-                    session.commit()
-                    # 2. insert relevant info into FunctionVersion
-                    code = 'def run(*args):\n    return args[' + str(i) + ']'
-                    function_version = db.FunctionVersion(fn_id = new_function.fn_id,
-                        completeness = 1, date = datetime.date.today(), code = code,
-                        is_switch = 0, non_df_args = '')
-                    session.add(function_version)
-                    session.commit()
-                    fn_id = new_function.fn_id
-                else:
-                    fn_id = fn_id[0]
-
-                session.add(
-                    db.FunctionSDF(
-                        fn_id=fn_id,
-                        df_id=df_id,
-                        u_id=1, display=1
-                    )
-                )
-                session.commit()
         return '0'
     else:
         return '1'
@@ -6768,12 +6716,10 @@ def upload_feature():
                             db.DF_Parameter.min,
                             db.DF_Parameter.max,
                             db.DF_Parameter.normalization,
-                            db.Function.fn_name,
                             db.Unit.unit_name,
                       )
                       .select_from(db.DeviceFeature)
                       .join(db.DF_Parameter)
-                      .join(db.Function)
                       .join(db.Unit)
                       .filter(db.DeviceFeature.df_id == (db.DeviceFeature.df_id if not df_id else df_id))
                       .order_by(asc(db.DeviceFeature.df_id), asc(db.DF_Parameter.param_i))
@@ -6805,7 +6751,6 @@ def upload_feature():
         'min': None,
         'max': None,
         'normalization': None,
-        'function': None,
         'unit': None,
     }
 
@@ -6825,8 +6770,7 @@ def upload_feature():
         parameter['min'] = row[6]
         parameter['max'] = row[7]
         parameter['normalization'] = row[8]
-        parameter['function'] = row[9]
-        parameter['unit'] = row[10]
+        parameter['unit'] = row[9]
         
         feature['parameter'].append(parameter.copy())
 

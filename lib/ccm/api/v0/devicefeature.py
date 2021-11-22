@@ -110,10 +110,6 @@ def _delete_device_feature(df_id):
             .filter(db.DF_Parameter.df_id == df_id)
             .delete())
 
-    # delete FunctionSDF
-    (session.query(db.FunctionSDF)
-            .filter(db.FunctionSDF.df_id == df_id)
-            .delete())
 
     # delete DeviceFeature
     (session.query(db.DeviceFeature)
@@ -134,7 +130,6 @@ def _crate_df_parameters(df_id, df_type, dfps):
             param_type=dfp.get('param_type', 'int'),
             u_id=None,
             idf_type=dfp.get('idf_type', 'sample'),
-            fn_id=dfp.get('fn_id', None),
             min=dfp.get('min', 0),
             max=dfp.get('max', 0),
             unit_id=dfp.get('unit_id', 1),  # 1 for None
@@ -143,45 +138,6 @@ def _crate_df_parameters(df_id, df_type, dfps):
         session.add(new_dfp)
         session.commit()
 
-        # set odf data mapping, only in v1
-        if df_type == 'output':
-            # checkout function "x<i>"
-            fn_name = 'x{}'.format(idx + 1)
-            fn_record = (session.query(db.Function)
-                                .filter(db.Function.fn_name == fn_name)
-                                .first())
-
-            if fn_record is None:
-                # 1. insert new entry into Function
-                new_function = db.Function(fn_name=fn_name)
-                session.add(new_function)
-                session.commit()
-
-                # 2. insert relevant info into FunctionVersion
-                code = 'def run(*args):\n    return args[{}]'.format(idx)
-                function_version = db.FunctionVersion(
-                    fn_id=new_function.fn_id,
-                    completeness=1,
-                    date=datetime.date.today(),
-                    code=code,
-                    is_switch=0,
-                    non_df_args='')
-                session.add(function_version)
-                session.commit()
-
-                fn_id = new_function.fn_id
-            else:
-                fn_id = fn_record.fn_id
-
-            # save FuntionSDF fo odf
-            new_fsdf = db.FunctionSDF(
-                fn_id=fn_id,
-                df_id=df_id,
-                u_id=1,
-                display=1
-            )
-            session.add(new_fsdf)
-            session.commit()
 
 
 @api.route('/', methods=['PUT'], strict_slashes=False)
@@ -319,7 +275,7 @@ def get_by_name(df_name):
     return _get_device_feature(_search_device_feature(df_name))
 
 
-@api.route('/<int:id_>', methods=['POST'], strict_slashes=False)
+@api.route('/<int:df_id>', methods=['POST'], strict_slashes=False)
 def update(df_id):
     """
     Request format is same as ``create``.
@@ -371,9 +327,6 @@ def update(df_id):
             .filter(db.DF_Parameter.u_id.is_(None),
                     db.DF_Parameter.mf_id.is_(None),
                     db.DF_Parameter.df_id == df_id)
-            .delete())
-    (session.query(db.FunctionSDF)
-            .filter(db.FunctionSDF.df_id == df_id)
             .delete())
     session.commit()
 

@@ -175,7 +175,6 @@ def _save_df_parameters(df_id, mf_id, dfps):
                 param_type=dfp.get('param_type', ori_dfp.param_type),
                 u_id=None,
                 idf_type=dfp.get('idf_type', ori_dfp.idf_type),
-                fn_id=dfp.get('fn_id', ori_dfp.fn_id),
                 min=dfp.get('min', ori_dfp.min),
                 max=dfp.get('max', ori_dfp.max),
                 unit_id=dfp.get('unit_id', ori_dfp.unit_id),

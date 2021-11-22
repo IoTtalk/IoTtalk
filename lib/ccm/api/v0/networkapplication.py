@@ -254,14 +254,14 @@ def create(p_id):
         for dfp_record in dfp_records:
             new_dfm = db.DF_Module(
                 na_id=na_id,
-                fn_id=dfp_record['fn_id'],
-                idf_type=dfp_record['idf_type'],
-                normalization=0 if df_type == 'input' else dfp_record['normalization'],
-                param_i=dfp_record['param_i'],
+                # fn_id=dfp_record.fn_id,
+                idf_type=dfp_record.idf_type,
+                normalization=0 if df_type == 'input' else dfp_record.normalization,
+                param_i=dfp_record.param_i,
                 dfo_id=dfo_id,
                 color='red',
-                min=dfp_record['min'],
-                max=dfp_record['max'])
+                min=dfp_record.min,
+                max=dfp_record.max)
             session.add(new_dfm)
             session.commit()
 

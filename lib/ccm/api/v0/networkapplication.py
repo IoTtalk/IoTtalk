@@ -1,7 +1,6 @@
 """
 NetworkApplication Module.
 
-    _get_df_function_list
     _refresh_multiple_join_module
 
     adjust_na
@@ -26,30 +25,6 @@ from ccm.api.utils import json_data, json_error, record_parser
 
 api = blueprint(__name__, __file__)
 log = logging.getLogger("ccm.api.v0.api")
-
-
-def _get_df_function_list(df_id):
-    """
-    Get all Functions for Device Feature could use.
-
-    The list of function only contain which store in FunctionSDF with
-    login user and device feature.
-
-    :param df_id: <DeviceFeature.df_id> // None for join function
-    :type df_id: int
-
-    :return:
-        [ <Function>, ...]
-    """
-    fn_records = (g.session.query(db.Function)
-                           .select_from(db.FunctionSDF)
-                           .join(db.Function)
-                           .filter(db.FunctionSDF.df_id == df_id)
-                           .order_by(db.Function.fn_name)
-                           .all())
-
-    return [record_parser(f) for f in fn_records]
-
 
 def _refresh_multiple_join_module(na_id):
     session = g.session
@@ -85,7 +60,6 @@ def _refresh_multiple_join_module(na_id):
             new_mjm = db.MultipleJoin_Module(
                 na_id=na_id,
                 param_i=idx,
-                fn_id=-1,
                 dfo_id=idfm.dfo_id
             )
             session.add(new_mjm)
@@ -254,14 +228,13 @@ def create(p_id):
         for dfp_record in dfp_records:
             new_dfm = db.DF_Module(
                 na_id=na_id,
-                fn_id=dfp_record['fn_id'],
-                idf_type=dfp_record['idf_type'],
-                normalization=0 if df_type == 'input' else dfp_record['normalization'],
-                param_i=dfp_record['param_i'],
+                idf_type=dfp_record.idf_type,
+                normalization=0 if df_type == 'input' else dfp_record.normalization,
+                param_i=dfp_record.param_i,
                 dfo_id=dfo_id,
                 color='red',
-                min=dfp_record['min'],
-                max=dfp_record['max'])
+                min=dfp_record.min,
+                max=dfp_record.max)
             session.add(new_dfm)
             session.commit()
 
@@ -350,7 +323,6 @@ def get(p_id, na_id):
                 'input': [ <dfm_info>, ...],
                 'output': [ <dfm_info>, ...],
                 'multiple': [ <multiplejion_info>, ...]
-                'fn_list': [ <fn_info>, ...]  //  for multiplejoin function
             }
         }
 
@@ -359,7 +331,6 @@ def get(p_id, na_id):
                 'dm_name': '<DeviceModel.dm_name>',
                 'dfo_id': '<DFObject.dfo_id>',
                 'alias_name': '<DFObject.alias_name>',
-                'fn_list': [ <fn_info>, ...]
                 'dfmp': [ <DF_Module>, ...],
             }
 
@@ -367,14 +338,7 @@ def get(p_id, na_id):
             {
                 'dfo_id': '<DFObject.dfo_id>',
                 'na_id': '<NetworkApplication.na_id>',
-                'param_i': 'integer',
-                'fn_id': '<Function.fn_id>'
-            }
-
-        <fn_info>:
-            {
-                'fn_id': '<Function.fn_id>',
-                'fn_name': '<Function.fn_name>'
+                'param_i': 'integer'
             }
     """
     session = g.session
@@ -389,7 +353,6 @@ def get(p_id, na_id):
         return json_error('NetworkApplication not found.')
 
     result = record_parser(na_record)
-    result['fn_list'] = _get_df_function_list(None)
     result['input'] = []
     result['output'] = []
 
@@ -422,7 +385,6 @@ def get(p_id, na_id):
                               .all())
 
         dfm_tmp = record_parser(dfo_record)
-        dfm_tmp['fn_list'] = _get_df_function_list(dfo_record.df_id)
         dfm_tmp['dfmp'] = [record_parser(r) for r in dfm_records]
 
         result[dfo_record.df_type].append(dfm_tmp)
@@ -451,8 +413,6 @@ def update(p_id, na_id):
 
         {
             'na_name': 'new name',  // optional
-            'multiplejoin_fn_id': 42,  // optional, the join function id,
-                                       // `null` implies disabling the function.
             'dfm_list': [  // optional, a list of `dfm_info`
                 {
                     'dfo_id': 123,
@@ -476,7 +436,7 @@ def update(p_id, na_id):
         }
     """
     err = invalid_input(request.json, {}, {
-        'na_name': str, 'multiplejoin_fn_id': (int, type(None)),
+        'na_name': str,
         'dfm_list': list})
     if err:
         return json_error(err)
@@ -488,7 +448,6 @@ def update(p_id, na_id):
 
     session = g.session
     na_name = request.json.get('na_name')
-    multiplejoin_fn_id = request.json.get('multiplejoin_fn_id')
     dfm_list = request.json.get('dfm_list')
 
     # check NetworkApplication is exist
@@ -517,10 +476,6 @@ def update(p_id, na_id):
 
         csmapi.dfm_reset(na_id, dfm.get('dfo_id'))
 
-    # update MultipleJoin_Module
-    (session.query(db.MultipleJoin_Module)
-            .filter(db.MultipleJoin_Module.na_id == na_id)
-            .update({'fn_id': multiplejoin_fn_id}))
     session.commit()
 
     # turn other NetworkApplications black

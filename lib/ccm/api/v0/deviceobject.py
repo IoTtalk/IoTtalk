@@ -292,7 +292,7 @@ def get(p_id, do_id):
         return json_error('DeviceObject not found.')
 
     # get basic Deivce Model info
-    result = json.loads(get_device_model(do_record.dm_id))
+    result = _get_device_model(do_record.dm_id).json['data']
     result['do'] = {'do_id': do_id, 'dfo': []}
 
     # query DeviceFeatureObject's df_name

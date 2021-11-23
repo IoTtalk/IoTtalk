@@ -16,9 +16,11 @@ import ControlChannel
 import db
 
 from flask import g, request
+from sqlalchemy import and_
 
 from ccm.api.utils import (blueprint, invalid_input,
                            json_data, json_error, record_parser)
+from ccm.api.v0.networkapplication import list_ as na_list
 
 api = blueprint(__name__, __file__)
 log = logging.getLogger("ccm.api.v0.api")
@@ -162,6 +164,82 @@ def get(p_id):
 
     project = record_parser(project_record)
     project.pop('pwd')
+    project['na'] = na_list(p_id).json['data']
+    project['ido'] = []
+    project['odo'] = []
+
+    ido_records = (
+        session.query(db.DeviceObject.do_id,
+                      db.DeviceObject.d_id,
+                      db.DeviceModel.dm_id,
+                      db.DeviceModel.dm_name,
+                      db.Device.d_name,
+                      db.Device.status)
+               .select_from(db.DeviceObject)
+               .join(db.DeviceModel)
+               .outerjoin(db.Device,db.Device.d_id == db.DeviceObject.d_id)
+               .filter(db.DeviceObject.p_id == p_id,
+                       db.DeviceObject.do_idx > 0)
+               .order_by(db.DeviceObject.do_idx)
+               .all()
+    )
+    for ido_record in ido_records:
+        ido = record_parser(ido_record)
+        ido['dfo'] = []
+
+        dfo_records = (session.query(db.DeviceFeature.df_id,
+                                     db.DFObject.dfo_id,
+                                     db.DFObject.alias_name,
+                                     db.DeviceFeature.df_type)
+                              .select_from(db.DFObject)
+                              .join(db.DeviceFeature)
+                              .filter(db.DFObject.do_id == ido_record.do_id)
+                              .order_by(db.DeviceFeature.df_name)
+                              .all())
+
+        for dfo_record in dfo_records:
+            dfo = record_parser(dfo_record)
+            dfo['src'] = None
+            ido['dfo'].append(dfo)
+
+        project['ido'].append(ido)
+
+    odo_records = (
+        session.query(db.DeviceObject.do_id,
+                      db.DeviceObject.d_id,
+                      db.DeviceModel.dm_id,
+                      db.DeviceModel.dm_name,
+                      db.Device.d_name,
+                      db.Device.status)
+               .select_from(db.DeviceObject)
+               .join(db.DeviceModel)
+               .outerjoin(db.Device, db.Device.d_id == db.DeviceObject.d_id)
+               .filter(db.DeviceObject.p_id == p_id,
+                       db.DeviceObject.do_idx < 0)
+               .order_by(db.DeviceObject.do_idx.desc())
+               .all()
+    )
+    for odo_record in odo_records:
+        odo = record_parser(odo_record)
+        odo['dfo'] = []
+
+        dfo_records = (session.query(db.DeviceFeature.df_id,
+                                     db.DFObject.dfo_id,
+                                     db.DFObject.alias_name,
+                                     db.DeviceFeature.df_type)
+                              .select_from(db.DFObject)
+                              .join(db.DeviceFeature)
+                              .filter(db.DFObject.do_id == odo_record.do_id)
+                              .order_by(db.DeviceFeature.df_name)
+                              .all())
+
+        for dfo_record in dfo_records:
+            dfo = record_parser(dfo_record)
+            dfo['src'] = None
+            odo['dfo'].append(dfo)
+
+        project['odo'].append(odo)
+
     return json_data(data=project)
 
 
